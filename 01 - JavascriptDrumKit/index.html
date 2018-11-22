@@ -9,41 +9,47 @@
 
 
   <div class="keys">
-    <div data-key="65" class="key">
+    <div data-key="65" class="key" onclick="playSoundOnClick(65)">
       <kbd>A</kbd>
       <span class="sound">clap</span>
     </div>
-    <div data-key="83" class="key">
+    <div data-key="83" class="key" onclick="playSoundOnClick(83)">
       <kbd>S</kbd>
       <span class="sound">hihat</span>
     </div>
-    <div data-key="68" class="key">
+    <div data-key="68" class="key" onclick="playSoundOnClick(68)">
       <kbd>D</kbd>
       <span class="sound">kick</span>
     </div>
-    <div data-key="70" class="key">
+    <div data-key="70" class="key" onclick="playSoundOnClick(70)">
       <kbd>F</kbd>
       <span class="sound">openhat</span>
     </div>
-    <div data-key="71" class="key">
+    <div data-key="71" class="key" onclick="playSoundOnClick(71)">
       <kbd>G</kbd>
       <span class="sound">boom</span>
     </div>
-    <div data-key="72" class="key">
+    <div data-key="72" class="key" onclick="playSoundOnClick(72)">
       <kbd>H</kbd>
       <span class="sound">ride</span>
     </div>
-    <div data-key="74" class="key">
+    <div data-key="74" class="key" onclick="playSoundOnClick(74)">
       <kbd>J</kbd>
       <span class="sound">snare</span>
     </div>
-    <div data-key="75" class="key">
+    <div data-key="75" class="key" onclick="playSoundOnClick(75)">
       <kbd>K</kbd>
       <span class="sound">tom</span>
     </div>
-    <div data-key="76" class="key">
+    <div data-key="76" class="key" onclick="playSoundOnClick(76)">
       <kbd>L</kbd>
       <span class="sound">tink</span>
+    </div>
+  </div>
+  <div class="keys low-row">
+    <div data-key="67" class="key low-row" onclick="playSoundOnClick(67)">
+      <kbd>C</kbd>
+      <span class="sound">kick</span>
     </div>
   </div>
 
@@ -56,6 +62,7 @@
   <audio data-key="74" src="sounds/snare.wav"></audio>
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
+  <audio data-key="67" src="sounds/kick.wav"></audio>
 
 <script>
   function removeTransition(e) {
@@ -64,7 +71,6 @@
   }
 
   function playSound(e) {
-  	console.log(e);
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
     if (!audio) return;
@@ -72,6 +78,10 @@
     key.classList.add('playing');
     audio.currentTime = 0;
     audio.play();
+  }
+
+  function playSoundOnClick(e) {
+    playSound({keyCode: e});
   }
 
   const keys = Array.from(document.querySelectorAll('.key'));
