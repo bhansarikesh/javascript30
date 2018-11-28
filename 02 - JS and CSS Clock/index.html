@@ -6,7 +6,7 @@
 </head>
 <body>
 
-
+    <audio src="http://s1download-universal-soundbank.com/mp3/sounds/1115.mp3"></audio>
     <div class="clock">
       <div class="clock-face">
         <div class="hand clock-center"></div>
@@ -110,6 +110,7 @@
     const secondHand = document.querySelector('.second-hand');
     const minHand = document.querySelector('.min-hand');
     const hourHand = document.querySelector('.hour-hand');
+    const audio = document.querySelector('audio');
 
     function setDate() {
       const now = new Date();
@@ -120,6 +121,8 @@
       if (seconds === 1) {
         secondHand.classList.remove('notransition'); // Re-enable transitions
       }
+      audio.currentTime = 0;
+      audio.play();
       const secondsDegrees = ((seconds/60) * 360) + 90;
       secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
 
